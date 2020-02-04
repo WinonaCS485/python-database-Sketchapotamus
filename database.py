@@ -11,10 +11,12 @@ connection = pymysql.connect(host='mrbartucz.com',
 try:
     with connection.cursor() as cursor:
         # Select all Students
-        sql = "SELECT * from Students"
+        print ("Search for student:", end=' ')
+        search = input()
+        sql = "SELECT * from Students where FirstName = %s"
         
         # execute the SQL command
-        cursor.execute(sql)
+        cursor.execute(sql, search)
         
         # get the results
         for result in cursor:
